@@ -45,7 +45,7 @@ app.listen(port, function (err) {
         console.log(`Error in running server ${err} `);
         return;
     }
-    console.log(chalk.bgWhite.red.underline(` Server is up-to-date on port ${port}| :) =>-----------------------------------------------------------------------`));
-    console.log(chalk.bgBlueBright.yellow.underline(` Sever is on http://localhost:8000| :) =>-----------------------------------------------------------------------`));
+    console.log(chalk.bgWhite.red.underline(` Server is up-to-date on port ${port} | :) =>-----------------------------------------------------------------------`));
+    console.log(chalk.bgBlueBright.yellow.underline(` Sever is on http://localhost:8000 | :) =>-----------------------------------------------------------------------`));
 
 })
