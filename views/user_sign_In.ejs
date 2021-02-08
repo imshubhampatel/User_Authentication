@@ -8,9 +8,19 @@
         <div class="image">
             <img src="../images/undraw_profile_pic_ic5t.svg" alt="">
         </div>
-        <form action="/user/create-session" method="POST" autocomplete="off">
-            <input type="email" name="email" placeholder="Enter Your Email" required>
-            <input type="password" name="password" placeholder="Enter Password" required>
+        <form action="/user/create-session" method="POST">
+            <div class="input-first input">
+                <div class="input-image">
+                    <img style=" display:inline-block; width:20px ;height:20;" src="../images/gmail.png" alt="">
+                </div>
+                <input type="email" name="email" placeholder="Enter Your Email" required>
+            </div>
+            <div class="input-first input">
+                <div class="input-image">
+                    <img style=" display:inline-block; width:20px ;height:20;" src="../images/gmail.png" alt="">
+                </div>
+                <input type="password" name="password" placeholder="Enter Password" required>
+            </div>
             <input class="btn-grad" type="submit" value="Sign In">
         </form>
     </div>

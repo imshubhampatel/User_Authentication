@@ -10,7 +10,7 @@ db.once('open', function (err) {
         console.log("Error in connecting database  :( =>");
         return;
     }
-    console.log(chalk.bgRedBright.white.underline(` Sever is up-to-date with database| :) =>-----------------------------------------------------------------------`));
+    console.log(chalk.bgRedBright.white.underline(` Sever is up-to-date with database | :) =>-----------------------------------------------------------------------`));
 })
 
 module.exports = db;

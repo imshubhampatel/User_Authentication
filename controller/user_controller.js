@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+
 module.exports.profile = function (req, res) {
     if (req.cookies.user_id) {
         User.findById(req.cookies.user_id, function (err, user) {
@@ -12,8 +13,7 @@ module.exports.profile = function (req, res) {
             }
         });
 
-    }
-    else {
+    } else {
         return res.redirect("/user/sign-in")
     }
 }
@@ -36,14 +36,24 @@ module.exports.signIn = function (req, res) {
 
 
 module.exports.create = function (req, res) {
-    if (req.body.password != req.body.confirm_password) {
+    let userInfo = req.body;
+
+    if (userInfo.password != userInfo.confirm_password) {
         return res.redirect('back');
     }
-    User.findOne({ email: req.body.email }, function (err, user) {
-        if (err) { console.log('err in finding user Siging up', err); return; }
+    User.findOne({
+        email: userInfo.email
+    }, function (err, user) {
+        if (err) {
+            console.log('err in finding user Siging up', err);
+            return;
+        }
         if (!user) {
             User.create(req.body, function (err, user) {
-                if (err) { console.log('err in finding user Siging up', err); return; }
+                if (err) {
+                    console.log('err in finding user Siging up', err);
+                    return;
+                }
                 if (user) {
                     res.redirect("/user/sign-in");
                 }
@@ -54,12 +64,18 @@ module.exports.create = function (req, res) {
         }
     })
 }
+
+
 module.exports.createSession = function (req, res) {
 
     // finding the user first 
-    User.findOne({ email: req.body.email }, function (err, user) {
+    User.findOne({
+        email: req.body.email
+    }, function (err, user) {
         // handle eror of data sharing 
-        if (err) { console.log("Error in siginng in with finding contact", err) }
+        if (err) {
+            console.log("Error in siginng in with finding contact", err)
+        }
 
         // if user were not in database then 
         if (!user) {
@@ -68,12 +84,13 @@ module.exports.createSession = function (req, res) {
 
         // user password authentication 
         if (user) {
+            
             if (user.password != req.body.password) {
                 return res.redirect('back');
             }
 
             // if password match then we create coockie
-            else if (user.password == req.body.password) {
+            else if (user.password === req.body.password) {
                 res.cookie("user_id", user._id)
                 return res.redirect("/user/profile");
             }
